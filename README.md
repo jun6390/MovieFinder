@@ -1,29 +1,6 @@
-# JOONFLIX
+# MovieFinder
 
-TMDB API 기반 영화 탐색 웹 애플리케이션입니다.  
-검색, 페이지네이션, 무한 스크롤을 한 화면 흐름 안에서 안정적으로 처리하는 데 집중한 1인 프론트엔드 프로젝트입니다.
-
-## 링크
-
-- Live Demo: https://joon-netflix.vercel.app/
-- GitHub: https://github.com/joon6390/Joon-Netflix
-
-## 프로젝트 개요
-
-- 개발 인원: 1인
-- 개발 기간: 2026.02
-- 목표: API 연동, 상태 관리, 대량 리스트 UX 구현 역량 검증
-- 핵심: 비동기 요청과 화면 상태 동기화
-
-## 주요 기능
-
-1. 카테고리별 영화 조회
-2. 영화 검색
-3. 페이지네이션
-4. 무한 스크롤
-5. 로딩 스켈레톤 UI
-6. 에러 처리 UI
-7. 스크롤 TOP 버튼
+TMDB API 기반 영화 탐색 웹 서비스
 
 ## 기술 스택
 
@@ -98,63 +75,9 @@ src
 - 해결: dead state/action 제거
 - 결과: 유지보수성 개선
 
-## 실행 방법
-
-### 1) 환경 변수 설정
-
-`.env`
-
-```env
-VITE_TMDB_READ_TOKEN=your_tmdb_read_access_token
-```
-
-`.env.example`
-
-```env
-VITE_TMDB_READ_TOKEN=your_tmdb_read_access_token
-```
-
-`.gitignore`
-
-```gitignore
-.env
-.env.*
-!.env.example
-```
-
-### 2) 설치 및 실행
-
-```bash
-npm install
-npm run dev
-```
-
-## 스크립트
-
-```bash
-npm run dev
-npm run build
-npm run preview
-npm run lint
-```
-
-## 검증 (2026-02-11)
-
-- `npm run lint` 통과
-- `npm run build` 통과
-
 ## 향후 개선 계획
 
 1. React Query 도입으로 캐싱/요청 상태 관리 고도화
 2. Vitest + React Testing Library 테스트 추가
 3. 접근성 보강(키보드 포커스, aria)
 4. Lighthouse 지표 기반 성능 개선
-
-## Contact
-
-- GitHub: https://github.com/joon6390
-- Email: joon6390@naver.com
-
-## Credits
-
-- Movie data from TMDB: https://www.themoviedb.org/
