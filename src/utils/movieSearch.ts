@@ -19,6 +19,8 @@ type FetchSearchMoviePageParams = {
 };
 
 const NOW_PLAYING_WINDOW_DAYS = 120;
+const HANGUL_REGEX = /[가-힣]/;
+const SPACE_REGEX = /\s/;
 
 export const normalizeSearchKeyword = (value: string) =>
   value.trim().replace(/\s+/g, " ");
@@ -26,10 +28,32 @@ export const normalizeSearchKeyword = (value: string) =>
 const normalizeComparableText = (value: string) =>
   value.toLowerCase().replace(/\s+/g, "");
 
+const getCompactHangulFallbackQueries = (keyword: string) => {
+  const compactKeyword = normalizeComparableText(keyword);
+
+  if (
+    SPACE_REGEX.test(keyword) ||
+    !HANGUL_REGEX.test(compactKeyword) ||
+    compactKeyword.length < 4
+  ) {
+    return [];
+  }
+
+  return [4, 3, 2]
+    .filter((length) => length < compactKeyword.length)
+    .map((length) => compactKeyword.slice(0, length));
+};
+
 const getSearchQueries = (keyword: string) => {
   const compactKeyword = normalizeComparableText(keyword);
 
-  return Array.from(new Set([keyword, compactKeyword])).filter(Boolean);
+  return Array.from(
+    new Set([
+      keyword,
+      compactKeyword,
+      ...getCompactHangulFallbackQueries(keyword),
+    ]),
+  ).filter(Boolean);
 };
 
 const getDateString = (date: Date) => date.toISOString().slice(0, 10);

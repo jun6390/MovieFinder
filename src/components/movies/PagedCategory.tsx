@@ -30,6 +30,7 @@ export default function PagedCategory({ endpoint, title }: Props) {
     const fetchMovie = async () => {
       setLoading(true);
       setError(null);
+      setTotalPages(0);
 
       try {
         const { results, total_pages } = keyword
@@ -72,7 +73,9 @@ export default function PagedCategory({ endpoint, title }: Props) {
   return (
     <>
       <MovieList {...view} />
-      <Pagination totalPages={totalPages} />
+      {!loading && data.length > 0 && totalPages > 0 && (
+        <Pagination totalPages={totalPages} />
+      )}
     </>
   );
 }
