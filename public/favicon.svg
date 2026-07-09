@@ -1,0 +1,19 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="faviconGradient" x1="8" y1="7" x2="58" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FACC15"/>
+      <stop offset="0.48" stop-color="#EF4444"/>
+      <stop offset="1" stop-color="#991B1B"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#111113"/>
+  <rect x="6" y="7" width="52" height="50" rx="11" fill="url(#faviconGradient)"/>
+  <rect x="12" y="14" width="6" height="7" rx="1.5" fill="#111113"/>
+  <rect x="12" y="28.5" width="6" height="7" rx="1.5" fill="#111113"/>
+  <rect x="12" y="43" width="6" height="7" rx="1.5" fill="#111113"/>
+  <rect x="46" y="14" width="6" height="7" rx="1.5" fill="#111113"/>
+  <rect x="46" y="28.5" width="6" height="7" rx="1.5" fill="#111113"/>
+  <rect x="46" y="43" width="6" height="7" rx="1.5" fill="#111113"/>
+  <path d="M27 23.58C27 21.66 29.08 20.45 30.75 21.41L40.75 27.17C42.42 28.13 42.42 30.54 40.75 31.5L30.75 37.26C29.08 38.22 27 37.02 27 35.09V23.58Z" fill="#FFFFFF"/>
+  <path d="M22 48H42" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+</svg>

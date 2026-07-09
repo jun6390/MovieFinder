@@ -1,0 +1,22 @@
+<svg width="284" height="56" viewBox="0 0 284 56" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">MovieFinder</title>
+  <desc id="desc">MovieFinder logo with a film frame and play icon</desc>
+  <defs>
+    <linearGradient id="markGradient" x1="6" y1="7" x2="52" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FACC15"/>
+      <stop offset="0.48" stop-color="#EF4444"/>
+      <stop offset="1" stop-color="#B91C1C"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="4" width="52" height="48" rx="10" fill="#111113"/>
+  <rect x="5" y="7" width="46" height="42" rx="8" fill="url(#markGradient)"/>
+  <rect x="10" y="12" width="5" height="6" rx="1.2" fill="#111113"/>
+  <rect x="10" y="25" width="5" height="6" rx="1.2" fill="#111113"/>
+  <rect x="10" y="38" width="5" height="6" rx="1.2" fill="#111113"/>
+  <rect x="41" y="12" width="5" height="6" rx="1.2" fill="#111113"/>
+  <rect x="41" y="25" width="5" height="6" rx="1.2" fill="#111113"/>
+  <rect x="41" y="38" width="5" height="6" rx="1.2" fill="#111113"/>
+  <path d="M25 19.5C25 17.96 26.66 17 27.99 17.77L37.49 23.27C38.82 24.04 38.82 25.96 37.49 26.73L27.99 32.23C26.66 33 25 32.04 25 30.5V19.5Z" fill="#FFFFFF"/>
+  <text x="70" y="39" font-family="Inter, Arial, Helvetica, sans-serif" font-size="30" font-weight="800" letter-spacing="0" fill="#FFFFFF">Movie</text>
+  <text x="165" y="39" font-family="Inter, Arial, Helvetica, sans-serif" font-size="30" font-weight="800" letter-spacing="0" fill="#FACC15">Finder</text>
+</svg>

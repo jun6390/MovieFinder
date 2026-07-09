@@ -37,9 +37,7 @@ export default function MovieFooter() {
           <div className="flex flex-col items-center text-center gap-8 md:flex-row md:items-start md:justify-between md:text-left">
             <div className="space-y-3 md:text-left">
               <div className="flex items-center justify-center md:justify-start gap-2">
-                <span className="text-red-600 text-lg font-extrabold tracking-wide">
-                  JOONFLIX
-                </span>
+                <img src="/logo.svg" alt="MovieFinder" className="h-8 w-auto" />
               </div>
               <p className="text-white/60 text-sm leading-relaxed max-w-md">
                 TMDB API 기반으로 영화 정보를 보여주는 개인 프로젝트입니다. API
@@ -151,7 +149,7 @@ export default function MovieFooter() {
           {/* Bottom */}
           <div className="mt-10 flex flex-col items-center text-center gap-3 sm:flex-row sm:items-center sm:justify-between sm:text-left border-t border-white/10 pt-6">
             <p className="text-white/50 text-sm">
-              © {new Date().getFullYear()} JoonFlix. All rights reserved.
+              © {new Date().getFullYear()} MovieFinder. All rights reserved.
             </p>
             <p className="text-white/50 text-sm">
               Data provided by <span className="text-yellow-500">TMDB</span>.
