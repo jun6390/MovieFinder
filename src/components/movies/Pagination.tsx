@@ -16,6 +16,8 @@ export default function Pagination({ totalPages }: Props) {
   const currentPage = useMovieStore((state) => state.currentPage);
   const setCurrentPages = useMovieStore((state) => state.setCurrentPages);
   const prevPageRef = useRef(currentPage);
+  const hasPages = totalPages > 0;
+  const lastPage = Math.max(1, totalPages);
 
   useEffect(() => {
     if (prevPageRef.current === currentPage) return;
@@ -60,8 +62,11 @@ export default function Pagination({ totalPages }: Props) {
         <button
           className={twMerge(
             `relative inline-flex items-center rounded-md px-4 py-2 text-sm font-medium text-white border border-white/30`,
-            currentPage === 1 ? "cursor-not-allowed" : "hover:bg-gray-800",
+            !hasPages || currentPage === 1
+              ? "cursor-not-allowed opacity-50"
+              : "hover:bg-gray-800",
           )}
+          disabled={!hasPages || currentPage === 1}
           onClick={() => setCurrentPages(Math.max(1, currentPage - 1))}
         >
           Previous
@@ -70,11 +75,12 @@ export default function Pagination({ totalPages }: Props) {
         <button
           className={twMerge(
             `relative inline-flex items-center rounded-md px-4 py-2 text-sm font-medium text-white border border-white/30`,
-            currentPage === totalPages
-              ? "cursor-not-allowed"
+            !hasPages || currentPage === lastPage
+              ? "cursor-not-allowed opacity-50"
               : "hover:bg-gray-800",
           )}
-          onClick={() => setCurrentPages(Math.min(currentPage + 1, totalPages))}
+          disabled={!hasPages || currentPage === lastPage}
+          onClick={() => setCurrentPages(Math.min(currentPage + 1, lastPage))}
         >
           Next
         </button>
@@ -83,7 +89,8 @@ export default function Pagination({ totalPages }: Props) {
       {/* 데스크탑 */}
       <div className="hidden sm:flex sm:flex-1 sm:flex-col sm:items-center sm:justify-center gap-3 text-center">
         <p className="text-sm text-white">
-          Showing page <span className="font-medium">{currentPage}</span> of{" "}
+          Showing page{" "}
+          <span className="font-medium">{hasPages ? currentPage : 0}</span> of{" "}
           <span className="font-medium">{totalPages}</span> pages
         </p>
 
@@ -94,8 +101,11 @@ export default function Pagination({ totalPages }: Props) {
           <button
             className={twMerge(
               `relative inline-flex items-center rounded-l-md px-2 py-2 text-white ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0`,
-              currentPage === 1 ? "cursor-not-allowed" : "hover:bg-gray-800",
+              !hasPages || currentPage === 1
+                ? "cursor-not-allowed opacity-50"
+                : "hover:bg-gray-800",
             )}
+            disabled={!hasPages || currentPage === 1}
             onClick={() => setCurrentPages(1)}
           >
             <span className="sr-only">First page</span>
@@ -105,8 +115,11 @@ export default function Pagination({ totalPages }: Props) {
           <button
             className={twMerge(
               `relative inline-flex items-center px-2 py-2 text-white ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0`,
-              currentPage === 1 ? "cursor-not-allowed" : "hover:bg-gray-800",
+              !hasPages || currentPage === 1
+                ? "cursor-not-allowed opacity-50"
+                : "hover:bg-gray-800",
             )}
+            disabled={!hasPages || currentPage === 1}
             onClick={() => setCurrentPages(Math.max(1, currentPage - 1))}
           >
             <span className="sr-only">Previous</span>
@@ -131,12 +144,13 @@ export default function Pagination({ totalPages }: Props) {
           <button
             className={twMerge(
               `relative inline-flex items-center px-2 py-2 text-white ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0`,
-              currentPage === totalPages
-                ? "cursor-not-allowed"
+              !hasPages || currentPage === lastPage
+                ? "cursor-not-allowed opacity-50"
                 : "hover:bg-gray-800",
             )}
+            disabled={!hasPages || currentPage === lastPage}
             onClick={() =>
-              setCurrentPages(Math.min(currentPage + 1, totalPages))
+              setCurrentPages(Math.min(currentPage + 1, lastPage))
             }
           >
             <span className="sr-only">Next</span>
@@ -146,11 +160,12 @@ export default function Pagination({ totalPages }: Props) {
           <button
             className={twMerge(
               `relative inline-flex items-center rounded-r-md px-2 py-2 text-white ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0`,
-              currentPage === totalPages
-                ? "cursor-not-allowed"
+              !hasPages || currentPage === lastPage
+                ? "cursor-not-allowed opacity-50"
                 : "hover:bg-gray-800",
             )}
-            onClick={() => setCurrentPages(totalPages)}
+            disabled={!hasPages || currentPage === lastPage}
+            onClick={() => setCurrentPages(lastPage)}
           >
             <span className="sr-only">Last page</span>
             <ChevronsRight className="h-5 w-5" aria-hidden="true" />

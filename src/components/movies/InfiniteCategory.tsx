@@ -3,6 +3,10 @@ import { axiosInstance } from "../../api/axios";
 import MovieList from "./MovieList";
 import { useInView } from "react-intersection-observer";
 import { useMovieStore } from "../../store/movieStore";
+import {
+  fetchSearchMoviePage,
+  normalizeSearchKeyword,
+} from "../../utils/movieSearch";
 
 type Props = {
   endpoint: "popular" | "top_rated";
@@ -18,7 +22,7 @@ export default function InfiniteCategory({ endpoint, title }: Props) {
   const canLoadMoreRef = useRef(true);
 
   const term = useMovieStore((state) => state.term);
-  const keyword = term.trim();
+  const keyword = normalizeSearchKeyword(term);
 
   useEffect(() => {
     setData([]);
@@ -55,13 +59,15 @@ export default function InfiniteCategory({ endpoint, title }: Props) {
       setError(null);
 
       try {
-        const url = keyword
-          ? `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(keyword)}&page=${page}`
-          : `/${endpoint}?page=${page}`;
-
-        const {
-          data: { results, total_pages },
-        } = await axiosInstance.get(url, { signal });
+        const { results, total_pages } = keyword
+          ? await fetchSearchMoviePage({
+              category: endpoint,
+              keyword,
+              page,
+              signal,
+            })
+          : (await axiosInstance.get(`/${endpoint}?page=${page}`, { signal }))
+              .data;
 
         setHasMore(page < total_pages);
         if (page === 1) setData(results);

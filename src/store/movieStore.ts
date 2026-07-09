@@ -19,6 +19,7 @@ export const useMovieStore = create<MovieStore>()(
     setTerm: (text: string) =>
       set((state) => {
         state.term = text;
+        state.currentPage = 1;
       }),
   })),
 );
