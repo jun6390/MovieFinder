@@ -31,6 +31,10 @@ export default function MovieList({
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:px-0">
           {loading ? (
             <MovieLoader />
+          ) : movies.length === 0 ? (
+            <p className="col-span-full rounded-md border border-white/10 bg-white/5 px-4 py-10 text-center text-sm text-white/70">
+              검색 결과가 없습니다.
+            </p>
           ) : (
             movies.map((movie) => <MovieListItem key={movie.id} {...movie} />)
           )}

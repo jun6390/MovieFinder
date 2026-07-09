@@ -117,7 +117,7 @@ export default function MovieFooter() {
                 <h3 className="text-white font-semibold text-sm">Social</h3>
                 <div className="flex items-center justify-center md:justify-start gap-3">
                   <a
-                    href="https://github.com/joon6390"
+                    href="https://github.com/jun6390"
                     target="_blank"
                     rel="noreferrer"
                     className="h-10 w-10 inline-flex items-center justify-center rounded-md border border-white/15 bg-white/5 text-white/80 hover:text-white hover:bg-white/10 transition"

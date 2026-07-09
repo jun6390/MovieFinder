@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { axiosInstance } from "../../api/axios";
 import { useMovieStore } from "../../store/movieStore";
+import {
+  fetchSearchMoviePage,
+  normalizeSearchKeyword,
+} from "../../utils/movieSearch";
 import MovieList from "./MovieList";
 import Pagination from "./Pagination";
 
@@ -12,7 +16,7 @@ type Props = {
 export default function PagedCategory({ endpoint, title }: Props) {
   const term = useMovieStore((state) => state.term);
   const currentPage = useMovieStore((state) => state.currentPage);
-  const keyword = term.trim();
+  const keyword = normalizeSearchKeyword(term);
 
   const [data, setData] = useState<MovieType[]>([]);
   const [loading, setLoading] = useState(false);
@@ -28,13 +32,18 @@ export default function PagedCategory({ endpoint, title }: Props) {
       setError(null);
 
       try {
-        const url = keyword
-          ? `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(keyword)}&page=${currentPage}`
-          : `/${endpoint}?page=${currentPage}`;
-
-        const {
-          data: { results, total_pages },
-        } = await axiosInstance.get(url, { signal });
+        const { results, total_pages } = keyword
+          ? await fetchSearchMoviePage({
+              category: endpoint,
+              keyword,
+              page: currentPage,
+              signal,
+            })
+          : (
+              await axiosInstance.get(`/${endpoint}?page=${currentPage}`, {
+                signal,
+              })
+            ).data;
 
         setData(results);
         setTotalPages(total_pages);
